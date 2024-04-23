@@ -167,3 +167,4 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:/opt/lampp:/home/shinigami/Scripts"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+export QT_QPA_PLATFORM=xcb
