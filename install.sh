@@ -4,6 +4,9 @@
 dotfiles=~/Git/dotfiles
 config=~/.config
 
+# Pacman Conf
+sudo cp $dotfiles/pacman.conf /etc/pacman.conf
+
 yay -Syu --noconfirm
 
 # ML4W Dotfiles
@@ -81,7 +84,6 @@ sudo ln -s $dotfiles/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf
 sudo rm -f /etc/php/php.ini
 sudo ln -s $dotfiles/php.ini /etc/php/php.ini
 sudo systemctl enable httpd.service --now
-sudo systemctl enable mariadb.service --now
 mkdir -p ~/public_html/shin.com
 
 # Hyprland
