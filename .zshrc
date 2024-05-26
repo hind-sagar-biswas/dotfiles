@@ -1,5 +1,5 @@
 if [[ -o interactive ]]; then
-    cls
+    clear
     echo ""
     fastfetch
 fi
