@@ -8,7 +8,7 @@
 
 @define-color bg_red #493B40;
 @define-color bg_yellow #45443C;
-@define-color bg_green #3C4841;
+@define-color bg_green #4C4C4C;
 @define-color bg_blue #384B55;
 @define-color bg_purple #463F48;
 @define-color bg_visual #4C3743;
@@ -16,11 +16,11 @@
 
 @define-color red #E67E80;
 @define-color yellow #DBBC7F;
-@define-color green #A7C080;
+@define-color green #7C7C7C;
 @define-color blue #7FBBBB;
 @define-color purple #D699B6;
 @define-color aqua #83C092;
-@define-color orange #E69875;
+@define-color orange #453C3A;
 
 @define-color grey0 #7A8478;
 @define-color grey1 #859289;
@@ -64,7 +64,7 @@
 
 #workspaces button.urgent {
 	background: @orange;
-	color: @bg_red;
+	color: @grey1;
 }
 
 #workspaces button:hover {
@@ -102,5 +102,6 @@ window#waybar.empty #window {
 
 #clock,
 #battery {
+	color: @grey2;
 	background-color: @orange;
 }

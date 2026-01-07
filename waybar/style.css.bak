@@ -1,37 +1,106 @@
+@define-color bg_dim #1E2326;
+@define-color bg0 #272E33;
+@define-color bg1 #2E3C3C;
+@define-color bg2 #374145;
+@define-color bg3 #414B50;
+@define-color bg4 #495156;
+@define-color bg5 #4F5B58;
+
+@define-color bg_red #493B40;
+@define-color bg_yellow #45443C;
+@define-color bg_green #3C4841;
+@define-color bg_blue #384B55;
+@define-color bg_purple #463F48;
+@define-color bg_visual #4C3743;
+@define-color fg #D3C6AA;
+
+@define-color red #E67E80;
+@define-color yellow #DBBC7F;
+@define-color green #A7C080;
+@define-color blue #7FBBBB;
+@define-color purple #D699B6;
+@define-color aqua #83C092;
+@define-color orange #E69875;
+
+@define-color grey0 #7A8478;
+@define-color grey1 #859289;
+@define-color grey2 #9DA9A0;
+@define-color statusline1 #A7C080;
+@define-color statusline2 #D3C6AA;
+@define-color statusline3 #E67E80;
+
 * {
-    border: none;
-    border-radius: 0;
-    font-family: CaskaydiaCove Nerd Font Mono;
-    font-size: 14px;
-    min-height: 0;
+	font-family: 'Radio Canada Big', sans-serif;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 30px;
 }
 
 #waybar {
 	background: transparent;
-}
-
-#custom-date, #clock, #battery, #pulseaudio, #network, #language, #backlight {
-	background-color: rgba(46, 52, 64, 0.7);
-	padding: 5px 10px;
-	margin: 5px 0px;
-	color: #9DA9A0;
-}
-
-
-#custom-power {
-	border-radius: 5px;
-	margin-right: 10px;
-	margin-top: 5px;
-	margin-bottom: 5px;
 	margin-left: 0px;
-	padding: 5px 10px;
 }
 
+
+#workspaces {
+	padding: 0;
+	background: @bg_green;
+}
+
+#workspaces button {
+	padding: 0 10px 0 10px;
+	color: @statusine;
+}
+
+#workspaces button.active {
+	background: @green;
+	color: @bg_dim;
+}
+
+#workspaces button.focused {
+	background: @green;
+	color: @bg_dim;
+}
+
+#workspaces button.urgent {
+	background: @orange;
+	color: @bg_red;
+}
+
+#workspaces button:hover {
+	background: @bg_green;
+	color: @statusline;
+}
+
+
+#window {
+	background-color: @bg0;
+	color: @green;
+	padding: 0 15px 0 15px;
+}
+
+window#waybar.empty #window {
+	background-color: transparent;
+}
+
+#mpd,
+#idle_inhibitor,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#battery,
+#tray,
 #clock {
-    border-radius: 0px 5px 5px 0px;
-    margin-right: 10px;
+	background-color: @green;
+	color: @bg_dim;
+	padding: 0 15px 0 15px;
+	/* top, right, bottom, left */
 }
 
-#network {
-	border-radius: 5px 0px 0px 5px;
+#clock,
+#battery {
+	background-color: @orange;
 }
