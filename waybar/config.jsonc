@@ -1,19 +1,22 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 33, // Waybar height (to be removed for auto height)
-    "width": 1880, // Waybar width
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 33, // Waybar height (to be removed for auto height)
+    // "width": 1880, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
-    "margin-top": 13,
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+
+    // Order of the modules
+    "modules-left": ["hyprland/workspaces", "cpu", "memory", "temperature", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "tray", "battery"],
+    "modules-right": ["idle_inhibitor", "backlight", "wireplumber", "wireplumber#source", "bluetooth", "network", "tray", "battery"],
+
     // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        // "format": "{name}",
         "format": "{name}"
     },
     "hyprland/window": {
@@ -32,32 +35,6 @@
     },
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -112,9 +89,9 @@
         "format-icons": ["", "", ""]
     },
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}%",
-        "format-icons": []
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "󰖨"]
     },
     "battery": {
         "states": {
@@ -147,8 +124,8 @@
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "󰆪 {icon} {format_source}",
-        "format-muted": "󰆪 {format_source}",
+        "format-bluetooth-muted": "󰝟{icon} {format_source}",
+        "format-muted": "󰝟 {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -161,6 +138,30 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "on-click": "helvum",
+        "format-icons": ["", "", ""]
+    },
+    "wireplumber#source": {
+        "node-type": "Audio/Source",
+        "format": "{volume}% 󰍬",
+        "format-muted": "󰍭",
+        // "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "scroll-step": 5,
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     },
     "custom/media": {
         "format": "{icon} {}",
