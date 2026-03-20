@@ -13,24 +13,14 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-         // "format": "{name}",
-         "format": "{name}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-         }
-     },
-     "hyprland/window": {
-     	"max-length": 20,
-	"icon": true,
-	"icon-size": 20
-     },
+        // "format": "{name}",
+        "format": "{name}"
+    },
+    "hyprland/window": {
+        "max-length": 20,
+        "icon": true,
+        "icon-size": 20
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -82,29 +72,29 @@
     },
     "clock": {
         "timezone": "Asia/Dhaka",
-	"format": "    {:%H:%M}",
-	"format-alt": "    {:%A, %B %d, %Y}  ",
+        "format": " {:%H:%M}",
+        "format-alt": " {:%A, %B %d, %Y}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
-                    "mode"          : "year",
-                    "mode-mon-col"  : 3,
-                    "weeks-pos"     : "right",
-                    "on-scroll"     : 1,
-                    "format": {
-                              "months":     "<span color='#ffead3'><b>{}</b></span>",
-                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                              }
-                    },
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
         "actions":  {
-                    "on-click-right": "mode",
-                    "on-scroll-up": "tz_up",
-                    "on-scroll-down": "tz_down",
-                    "on-scroll-up": "shift_up",
-                    "on-scroll-down": "shift_down"
-                    }
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
     "cpu": {
         "format": "{usage}% ",
@@ -128,7 +118,7 @@
     },
     "battery": {
         "states": {
-            "good": 95,
+            "good": 75,
             "warning": 30,
             "critical": 15
         },
@@ -150,8 +140,8 @@
         "tooltip-format": "{ifname} via {gwaddr} 󰈀",
         "format-linked": "{ifname} (No IP) 󰈀",
         "format-disconnected": "Disconnected ⚠",
-        // "format-alt": "{ifname}: {ipaddr}/{cidr}"
-	"on-click": "kitty --command nmtui"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "kitty --command nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
