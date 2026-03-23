@@ -63,6 +63,11 @@ tooltip {
 	color: @statusine;
 }
 
+#workspaces button:hover {
+	background: @bg0;
+	color: @statusline;
+}
+
 #workspaces button.active {
 	background: @green;
 	color: @bg_dim;
@@ -80,11 +85,6 @@ tooltip {
 #workspaces button.urgent {
 	background: @orange;
 	color: @bg_red;
-}
-
-#workspaces button:hover {
-	background: @bg_green;
-	color: @statusline;
 }
 
 #window {
