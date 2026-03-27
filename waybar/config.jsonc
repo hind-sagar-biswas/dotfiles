@@ -9,9 +9,9 @@
     "margin-right": 10,
 
     // Order of the modules
-    "modules-left": ["hyprland/workspaces", "cpu", "memory", "temperature", "hyprland/window"],
+    "modules-left": ["hyprland/workspaces", "cpu", "memory", "temperature", "idle_inhibitor", "tray", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor", "backlight", "wireplumber", "wireplumber#source", "bluetooth", "network", "tray", "battery"],
+    "modules-right": ["backlight", "wireplumber", "wireplumber#source", "bluetooth", "network", "battery"],
 
     // Modules configuration
     "hyprland/workspaces": {

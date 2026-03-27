@@ -1,33 +1,32 @@
-@define-color bg_dim #1E2326;
-@define-color bg0 #272E33;
-@define-color bg1 #2E3C3C;
-@define-color bg2 #374145;
-@define-color bg3 #414B50;
-@define-color bg4 #495156;
-@define-color bg5 #4F5B58;
+/* Backgrounds & Neutrals */
+@define-color bg0 #1a1110;
+/* Deepest background (corners) */
+@define-color bg0-soft #261a18;
+/* Main UI background */
+@define-color bg3 #4a3834;
+/* Selection/Surface background */
+@define-color fg0 #f2e9e1;
+/* Primary text (brightest highlights) */
+@define-color fg1 #d6c5b8;
+/* Secondary text */
+@define-color gray #8c7a74;
+/* Muted stone/surface tone */
 
-@define-color bg_red #493B40;
-@define-color bg_yellow #45443C;
-@define-color bg_green #3C4841;
-@define-color bg_blue #384B55;
-@define-color bg_purple #463F48;
-@define-color bg_visual #4C3743;
-@define-color fg #D3C6AA;
+/* Accent Colors */
+@define-color red-dark #8d201f;
+@define-color red-light #b23a39;
 
-@define-color red #E67E80;
-@define-color yellow #DBBC7F;
-@define-color green #A7C080;
-@define-color blue #7FBBBB;
-@define-color purple #D699B6;
-@define-color aqua #83C092;
-@define-color orange #E69875;
+@define-color orange-dark #b34e23;
+@define-color orange-light #e08e53;
 
-@define-color grey0 #7A8478;
-@define-color grey1 #859289;
-@define-color grey2 #9DA9A0;
-@define-color statusline1 #A7C080;
-@define-color statusline2 #D3C6AA;
-@define-color statusline3 #E67E80;
+@define-color yellow-dark #c8821f;
+@define-color yellow-light #f0c475;
+
+@define-color blue-dark #1b3152;
+@define-color blue-light #4c7ea3;
+
+@define-color brown-dark #3d2b24;
+@define-color brown-light #6e5449;
 
 * {
 	all: unset;
@@ -40,11 +39,11 @@
 }
 
 tooltip {
-	background-color: @bg0;
+	background-color: @brown-dark;
 	color: @fg;
 	padding: 20px;
 	border-radius: 7px;
-	border: 2px solid @orange;
+	border: 2px solid @yellow-light;
 }
 
 #waybar {
@@ -55,41 +54,39 @@ tooltip {
 
 #workspaces {
 	padding: 0;
-	background: @bg_green;
+	background: @brown-dark;
 }
 
 #workspaces button {
 	padding: 2px 10px 2px 10px;
-	color: @statusine;
+	color: @fg0;
 }
 
 #workspaces button:hover {
 	background: @bg0;
-	color: @statusline;
-}
-
-#workspaces button.active {
-	background: @green;
-	color: @bg_dim;
+	color: @fg0;
 }
 
 #workspaces button.empty {
-	color: @grey0;
+	color: @gray;
+}
+
+#workspaces button.active {
+	background: @red-light;
 }
 
 #workspaces button.focused {
-	background: @green;
-	color: @bg_dim;
+	background: @red-light;
 }
 
 #workspaces button.urgent {
-	background: @orange;
-	color: @bg_red;
+	background: @yellow-light;
+	color: @red-dark;
 }
 
 #window {
 	background-color: @bg0;
-	color: @green;
+	color: @orange-light;
 	padding: 0 7px 0 7px;
 }
 
@@ -110,13 +107,14 @@ window#waybar.empty #window {
 #bluetooth,
 #tray,
 #clock {
-	background-color: @green;
-	color: @bg_dim;
+	background-color: @orange-light;
+	color: @bg0;
 	padding: 0 15px 0 15px;
 	/* top, right, bottom, left */
 }
 
 #clock,
 #battery {
-	background-color: @orange;
+	background-color: @blue-light;
+	color: @blue-dark;
 }

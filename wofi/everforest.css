@@ -1,8 +1,8 @@
-/* Custom */
-@define-color accent #e08e53;
+/* Everforest */
+@define-color accent #A7C080;
 @define-color txt #D3C6AA;
-@define-color bg #1a1110;
-@define-color bg2 #261a18;
+@define-color bg #2B3339;
+@define-color bg2 #333C43;
 
 * {
    font-family: 'FiraCode Nerd Font mono';
