@@ -119,7 +119,7 @@
         "format-linked": "{ifname} (No IP) 󰈀",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "kitty --command nmtui"
+        "on-click": "kitty -- nmtui"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
