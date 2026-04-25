@@ -1,0 +1,7 @@
+font-family = FiraCode Nerd Font Mono
+theme = Gruvbox Dark
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = notify
+font-size = 10
+bold-color = bright
+selection-clear-on-copy = true
