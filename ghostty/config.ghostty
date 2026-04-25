@@ -5,3 +5,5 @@ notify-on-command-finish-action = notify
 font-size = 10
 bold-color = bright
 selection-clear-on-copy = true
+background-opacity = 0.7
+background-blur = true
