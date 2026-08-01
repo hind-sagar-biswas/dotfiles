@@ -12,15 +12,21 @@
 @define-color gray #8c7a74;
 /* Muted stone/surface tone */
 
+/* Accent Colors */
+@define-color red-dark #8d201f;
+@define-color red-light #b23a39;
 
-@define-color burnt-tangerine #DE3B25;
-@define-color powder-blush #F8C1B7;
-@define-color bubblegum-pink #FD7589;
-@define-color cotton-candy #F48D98;
-@define-color dusk-blue #345376;
-@define-color turquoise-surf #38A8CD;
-@define-color prussian-blue #0D1F31;
-@define-color baltic-blue #2F65A3;
+@define-color orange-dark #b34e23;
+@define-color orange-light #e08e53;
+
+@define-color yellow-dark #c8821f;
+@define-color yellow-light #f0c475;
+
+@define-color blue-dark #1b3152;
+@define-color blue-light #4c7ea3;
+
+@define-color brown-dark #3d2b24;
+@define-color brown-light #6e5449;
 
 * {
 	all: unset;
@@ -33,11 +39,11 @@
 }
 
 tooltip {
-	background-color: @prussian-blue;
+	background-color: @brown-dark;
 	color: @fg;
 	padding: 20px;
 	border-radius: 7px;
-	border: 2px solid @prussian-blue;
+	border: 2px solid @yellow-light;
 }
 
 #waybar {
@@ -45,9 +51,10 @@ tooltip {
 	margin-left: 0px;
 }
 
+
 #workspaces {
 	padding: 0;
-	background: @prussian-blue;
+	background: @brown-dark;
 }
 
 #workspaces button {
@@ -56,7 +63,7 @@ tooltip {
 }
 
 #workspaces button:hover {
-	background: @baltic-blue;
+	background: @bg0;
 	color: @fg0;
 }
 
@@ -65,29 +72,27 @@ tooltip {
 }
 
 #workspaces button.active {
-	background: @turquoise-surf;
-	color: @prussian-blue;
+	background: @red-light;
 }
 
 #workspaces button.focused {
-	background: @turquoise-surf;
+	background: @red-light;
 }
 
 #workspaces button.urgent {
-	background: @burnt-tangerine;
-	color: @cotton-candy;
+	background: @yellow-light;
+	color: @red-dark;
 }
 
 #window {
-	background-color: @prussian-blue;
-	color: @turquoise-surf;
+	background-color: @bg0;
+	color: @orange-light;
 	padding: 0 7px 0 7px;
 }
 
 window#waybar.empty #window {
 	background-color: transparent;
 }
-
 
 #mpd,
 #idle_inhibitor,
@@ -102,7 +107,7 @@ window#waybar.empty #window {
 #bluetooth,
 #tray,
 #clock {
-	background-color: @cotton-candy;
+	background-color: @orange-light;
 	color: @bg0;
 	padding: 0 15px 0 15px;
 	/* top, right, bottom, left */
@@ -110,8 +115,6 @@ window#waybar.empty #window {
 
 #clock,
 #battery {
-	background-color: @burnt-tangerine;
-	color: @prussian-blue;
+	background-color: @blue-light;
+	color: @blue-dark;
 }
-
-
