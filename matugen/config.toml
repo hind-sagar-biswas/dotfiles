@@ -1,0 +1,38 @@
+[config]
+reload_apps = true
+
+[templates.waybar]
+input_path = "~/.config/matugen/templates/colors-waybar.css.tera"
+output_path = "~/.config/waybar/colors.css"
+post_hook = "pkill -SIGUSR2 waybar"
+
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hyprland.lua.tera"
+output_path = "~/.config/hypr/modules/colors.lua"
+post_hook = "hyprctl reload"
+
+[templates.wlogout]
+input_path = "~/.config/matugen/templates/wlogout.css.tera"
+output_path = "~/.config/wlogout/style.css"
+
+[templates.swaync_central]
+input_path = "~/.config/matugen/templates/central_control.css.tera"
+output_path = "~/.config/swaync/themes/nova-dark/central_control.css"
+post_hook = "swaync-client -rs"
+
+[templates.swaync_notifications]
+input_path = "~/.config/matugen/templates/notifications.css.tera"
+output_path = "~/.config/swaync/themes/nova-dark/notifications.css"
+
+[templates.ghostty]
+input_path = "~/.config/matugen/templates/ghostty.tera"
+output_path = "~/.config/ghostty/themes/matugen"
+
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk4.css.tera"
+output_path = "~/.config/gtk-4.0/colors.css"
+post_hook = "~/.config/matugen/reload-gtk.sh"
+
+[templates.hyprlock]
+input_path = "~/.config/matugen/templates/hyprlock.conf.tera"
+output_path = "~/.config/hypr/colors-hyprlock.conf"

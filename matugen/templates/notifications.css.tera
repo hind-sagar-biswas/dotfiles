@@ -1,9 +1,9 @@
-@define-color background #19120d;
-@define-color text #f0dfd7;
-@define-color background-alt #52443c;
-@define-color selected #e4bfa8;
-@define-color hover #c9ca93;
-@define-color urgent #ffb4ab;
+@define-color background {{colors.background.default.hex}};
+@define-color text {{colors.on_background.default.hex}};
+@define-color background-alt {{colors.surface_variant.default.hex}};
+@define-color selected {{colors.secondary.default.hex}};
+@define-color hover {{colors.tertiary.default.hex}};
+@define-color urgent {{colors.error.default.hex}};
 
 * {
   color: @text;

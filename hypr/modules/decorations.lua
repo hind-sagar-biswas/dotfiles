@@ -2,6 +2,8 @@
 --- DECORATIONS ---
 -------------------
 
+local colors = require("modules.colors")
+
 hl.config({
 	general = {
 		gaps_in = 5,
@@ -10,8 +12,8 @@ hl.config({
 		border_size = 2,
 
 		col = {
-			active_border = "rgba(F48D98ff)",
-			inactive_border = "rgba(0D1F31ff)",
+			active_border = colors.tertiary,
+			inactive_border = colors.background,
 		},
 
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps

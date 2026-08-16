@@ -1,10 +1,10 @@
-@define-color background #19120d;
-@define-color background-sec #52443c;
-@define-color text #f0dfd7;
-@define-color background-alt alpha(#6e390d, .4);
-@define-color selected #ffb786;
-@define-color hover alpha(#ffb786, .4);
-@define-color urgent #ffb4ab;
+@define-color background {{colors.background.default.hex}};
+@define-color background-sec {{colors.surface_variant.default.hex}};
+@define-color text {{colors.on_background.default.hex}};
+@define-color background-alt alpha({{colors.primary_container.default.hex}}, .4);
+@define-color selected {{colors.primary.default.hex}};
+@define-color hover alpha({{colors.primary.default.hex}}, .4);
+@define-color urgent {{colors.error.default.hex}};
 
 * {
   color: @text;

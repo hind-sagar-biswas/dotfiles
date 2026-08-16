@@ -9,10 +9,10 @@ window {
 
 button {
 	border-radius: 7;
-	border-color: #ffb786;
-	text-decoration-color: #f0dfd7;
-	color: #f0dfd7;
-	background-color: #19120d;
+	border-color: {{colors.primary.default.hex}};
+	text-decoration-color: {{colors.on_background.default.hex}};
+	color: {{colors.on_background.default.hex}};
+	background-color: {{colors.background.default.hex}};
 	border-style: solid;
 	border-width: 1px;
 	background-repeat: no-repeat;
@@ -24,8 +24,8 @@ button {
 button:focus,
 button:active,
 button:hover {
-	color: #19120d;
-	background-color: #ffb786;
+	color: {{colors.background.default.hex}};
+	background-color: {{colors.primary.default.hex}};
 	outline-style: none;
 }
 
