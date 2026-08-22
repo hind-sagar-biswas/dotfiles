@@ -13,7 +13,7 @@ mkdir -p $DOWNLOADS
 mkdir -p $BKUP_DIR
 
 # --- Functions ---
-source "$SCRIPTS/functions.sh"
+source "$BASE/modules/functions.sh"
 
 
 # --- Package Manager and AUR setup ---
@@ -32,13 +32,13 @@ scripts=(
 )
 
 for script in "${scripts[@]}"; do
-	source "$SCRIPTS/$script.sh"
+	source "$BASE/modules/$script.sh"
 done
 
 
 LN_DIRS=(
     "alacritty"
-    "botp"
+    "btop"
     "fastfetch"
     "ghostty"
     "hypr"
@@ -60,8 +60,8 @@ LN_DIRS=(
 $INSTALL_CMD -Syu --noconfirm
 
 # Custom scripts
-(cd ~/Git && git clone https://github.com/hind-sagar-biswas/linux-scripts.git)
-ln --symbolic "$HOME/.scripts" "$SCRIPTS"
+(cd $DOWNLOADS && git clone https://github.com/hind-sagar-biswas/linux-scripts.git)
+ln --symbolic "$SCRIPTS" "$HOME/.scripts" || true
 
 # Symlink Dotfiles
 for dir in "${LN_DIRS[@]}"; do
@@ -69,7 +69,7 @@ for dir in "${LN_DIRS[@]}"; do
     if [[ -d "$TG_DIR" ]]; then
 	mv "$TG_DIR" "$BKUP_DIR/$dir"
     fi
-    ln --symbolic "$CFG_DIR/$dir" "$BASE/$dir"
+    ln --symbolic "$BASE/$dir" "$TG_DIR"
 done
 
 PACKAGES=(
@@ -114,11 +114,11 @@ $INSTALL_CMD -S "${PACKAGES[@]}" --needed --noconfirm
 
 # ZSH
 mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
-ln --symbolic $dotfiles/.zshrc ~/.zshrc
+ln --symbolic "$BASE/.zshrc" "$HOME/.zshrc"
 
-# Wallpaper
+# Wallpaper & Colors
 WP_DIR="$HOME/Wallpapers"
 mkdir -p $WP_DIR
-cp "$BASE/wallpapers/*" "$WP_DIR"
+cp "$BASE/wallpapers/"* "$WP_DIR/"
 
 matugen image "$WP_DIR/wall.jpg"
