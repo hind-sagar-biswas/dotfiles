@@ -10,4 +10,7 @@ hl.config({
 		disable_splash_rendering = true,
 		enable_swallow = true,
 	},
+	cursor = {
+		no_hardware_cursors = true,
+	},
 })
