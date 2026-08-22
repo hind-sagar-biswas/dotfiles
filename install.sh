@@ -1,91 +1,124 @@
 #!/usr/bin/env bash
 
-# Variables
-dotfiles=~/Git/dotfiles
-config=~/.config
+set -euo pipefail
+
+# --- Configuration ---
+CFG_DIR="$HOME/.config"
+BASE="$( dirname -- "${BASH_SOURCE[0]}" )"
+DOWNLOADS="$HOME/Github"
+SCRIPTS="$DOWNLOADS/linux-scripts"
+BKUP_DIR="$HOME/.dotfiles_backup"
+
+mkdir -p $DOWNLOADS
+mkdir -p $BKUP_DIR
+
+# --- Functions ---
+source "$SCRIPTS/functions.sh"
+
+
+# --- Package Manager and AUR setup ---
+PKG_MANAGER=$(detect_package_manager)
+
+if [ "$PKG_MANAGER" != "pacman" ]; then
+	echo "Unsupported package manager: $PKG_MANAGER! Required: pacman"
+	exit 1
+fi
+
+
+scripts=(
+	"prereq"
+	"update"
+	"aur"
+)
+
+for script in "${scripts[@]}"; do
+	source "$SCRIPTS/$script.sh"
+done
+
+
+LN_DIRS=(
+    "alacritty"
+    "botp"
+    "fastfetch"
+    "ghostty"
+    "hypr"
+    "kitty"
+    "matugen"
+    "neofetch"
+    "qutebrowser"
+    "ranger"
+    "swaync"
+    "waybar"
+    "wlogout"
+    "wofi"
+    "yt-dlp"
+)
 
 # Pacman Conf
-sudo cp $dotfiles/pacman.conf /etc/pacman.conf
+# sudo cp $dotfiles/pacman.conf /etc/pacman.conf
 
-yay -Syu --noconfirm
+$INSTALL_CMD -Syu --noconfirm
 
-# ML4W Dotfiles
-mkdir ~/Downloads # If Downloads folder doesn't exists
-wget -P ~/Downloads/ https://gitlab.com/stephan-raabe/dotfiles/-/raw/main/apps/ML4W_Dotfiles_Installer.AppImage
-cd ~/Downloads
-chmod +x ML4W_Dotfiles_Installer.AppImage
-./ML4W_Dotfiles_Installer.AppImage
+# Custom scripts
+(cd ~/Git && git clone https://github.com/hind-sagar-biswas/linux-scripts.git)
+ln --symbolic "$HOME/.scripts" "$SCRIPTS"
 
-cd ~/Git
+# Symlink Dotfiles
+for dir in "${LN_DIRS[@]}"; do
+    TG_DIR="$CFG_DIR/$dir"
+    if [[ -d "$TG_DIR" ]]; then
+	mv "$TG_DIR" "$BKUP_DIR/$dir"
+    fi
+    ln --symbolic "$CFG_DIR/$dir" "$BASE/$dir"
+done
 
-# Neovim
-git clone https://github.com/hind-sagar-biswas/nvim.git
-rm -rf $config/nvim
-ln --symbolic ~/Git/nvim $config/nvim
+PACKAGES=(
+	"bun"
+	"zoxide"
+	"atuin"
+	"eza"
+	"kitty"
+	"alacritty"
+	"ghostty"
+	"btop"
+	"cmatrix"
+	"matugen-bin"
+	"yt-dlp"
+	"pokemon-colorscripts"
+	"wofi"
+	"swaync"
+	"bluez"
+	"bluez-utils"
+	"blueman"
+	"pipewire"
+	"wireplumber"
+	"hyprland"
+	"hyprshot"
+	"hyprpaper"
+	"hypridle"
+	"hyprlock"
+	"wlogout"
+	"waybar"
+	"xsel"
+	"wl-clipboard"
+	"cliphist"
+	"hyprland-guiutils"
+	"xdg-desktop-portal-hyprland"
+	"miku-cursor-theme"
+	"ttf-firacode-nerd"
+	"ttf-jetbrains-mono-nerd"
+)
+
+$INSTALL_CMD -S "${PACKAGES[@]}" --needed --noconfirm
+
 
 # ZSH
-yay -S --needed --noconfirm zsh zsh-autosuggestions zsh-syntax-highlighting
-rm -f ~/.zshrc
+mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
 ln --symbolic $dotfiles/.zshrc ~/.zshrc
 
-# Tmux
-yay -S --needed --noconfirm tmux
-rm -f ~/.tmux.conf
-ln --symbolic $dotfiles/.tmux.conf ~/.tmux.conf
+# Wallpaper
+WP_DIR="$HOME/Wallpapers"
+mkdir -p $WP_DIR
+cp "$BASE/wallpapers/*" "$WP_DIR"
 
-# Profile
-rm -f ~/.profile
-ln --symbolic $dotfiles/.profile ~/.profile
-
-# Neofetch
-yay -S --needed --noconfirm neofetch
-rm -rf $config/neofetch
-ln --symbolic $dotfiles/neofetch $config/neofetch
-
-# Qutebrowser
-rm -rf $config/qutebrowser
-ln --symbolic $dotfiles/qutebrowser $config/qutebrowser
-
-# Btop
-yay -S --needed --noconfirm btop
-rm -rf $config/btop
-ln --symbolic $dotfiles/btop $config/btop
-
-# Kitty Terminal
-yay -S --needed --noconfirm kitty
-rm -rf $config/kitty
-ln --symbolic $dotfiles/kitty $config/kitty
-
-# Alacritty Terminal
-yay -S --needed --noconfirm alacritty
-rm -rf $config/alacritty
-ln --symbolic $dotfiles/alacritty $config/alacritty
-
-# Ranger
-yay -S --needed --noconfirm ranger
-rm -rf $config/ranger
-ln --symbolic $dotfiles/ranger $config/ranger
-
-# GTK
-rm -rf $config/gtk-3.0
-ln --symbolic $dotfiles/gtk-3.0 $config/gtk-3.0
-
-# Scripts
-rm -r ~/Scripts
-git clone https://github.com/hind-sagar-biswas/linux-scripts.git ~/Git/linux-scripts
-ln --symbolic ~/Git/linux-scripts ~/Scripts
-
-# PHP Apache
-yay -S needed --noconfirm composer php php-mbstring php-apache php-gd php-xsl php-pgsql php-sqlite phpmyadmin apache mariadb
-sudo rm -rf /etc/httpd/conf/extra
-sudo ln -s $dotfiles/httpd/conf/extra /etc/httpd/conf/extra
-sudo rm -rf /etc/httpd/conf/httpd.conf
-sudo ln -s $dotfiles/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf
-sudo rm -f /etc/php/php.ini
-sudo ln -s $dotfiles/php.ini /etc/php/php.ini
-sudo systemctl enable httpd.service --now
-mkdir -p ~/public_html/shin.com
-
-# Hyprland
-rm -f $config/hypr/conf/keybindings/default.conf
-ln -s $dotfiles/hypr/default.conf $config/hypr/conf/keybindings/default.conf
+matugen image "$WP_DIR/wall.jpg"
