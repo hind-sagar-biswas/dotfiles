@@ -9,11 +9,11 @@ DOWNLOADS="$HOME/Github"
 SCRIPTS="$DOWNLOADS/linux-scripts"
 BKUP_DIR="$HOME/.dotfiles_backup"
 
-mkdir -p $DOWNLOADS
-mkdir -p $BKUP_DIR
+mkdir -p "$DOWNLOADS"
+mkdir -p "$BKUP_DIR"
 
 # --- Functions ---
-source "$BASE/modules/functions.sh"
+source "$BASE/modules/func.sh"
 
 
 # --- Package Manager and AUR setup ---
@@ -60,7 +60,7 @@ LN_DIRS=(
 $INSTALL_CMD -Syu --noconfirm
 
 # Custom scripts
-(cd $DOWNLOADS && git clone https://github.com/hind-sagar-biswas/linux-scripts.git)
+(cd $DOWNLOADS && git clone https://github.com/hind-sagar-biswas/linux-scripts.git || true)
 ln --symbolic "$SCRIPTS" "$HOME/.scripts" || true
 
 # Symlink Dotfiles
@@ -73,6 +73,7 @@ for dir in "${LN_DIRS[@]}"; do
 done
 
 PACKAGES=(
+	"zsh"
 	"bun"
 	"zoxide"
 	"atuin"
@@ -86,6 +87,7 @@ PACKAGES=(
 	"yt-dlp"
 	"pokemon-colorscripts"
 	"wofi"
+	"rofi"
 	"swaync"
 	"bluez"
 	"bluez-utils"
@@ -107,18 +109,29 @@ PACKAGES=(
 	"miku-cursor-theme"
 	"ttf-firacode-nerd"
 	"ttf-jetbrains-mono-nerd"
+	"brightnessctl"
+	"networkmanager"
+	"nmtui"
 )
 
 $INSTALL_CMD -S "${PACKAGES[@]}" --needed --noconfirm
 
 
 # ZSH
+if [[ -f "$HOME/.zshrc" || -L "$HOME/.zshrc" ]]; then
+    mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
+fi
 mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
 ln --symbolic "$BASE/.zshrc" "$HOME/.zshrc"
 
 # Wallpaper & Colors
 WP_DIR="$HOME/Wallpapers"
-mkdir -p $WP_DIR
+mkdir -p "$WP_DIR"
 cp "$BASE/wallpapers/"* "$WP_DIR/"
 
 matugen image "$WP_DIR/wall.jpg"
+
+
+# Rofi Theme Setup
+(cd $DOWNLOADS; git clone https://github.com/adi1090x/rofi.git || true; cd rofi; chmod +x setup.sh; ./setup.sh)
+
