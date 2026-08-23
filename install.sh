@@ -57,6 +57,8 @@ LN_DIRS=(
 # Pacman Conf
 # sudo cp $dotfiles/pacman.conf /etc/pacman.conf
 
+echo "Using $INSTALL_CMD as package manager"
+
 $INSTALL_CMD -Syu --noconfirm
 
 # Custom scripts
