@@ -75,7 +75,7 @@ for dir in "${LN_DIRS[@]}"; do
         mv "$TG_DIR" "$BKUP_DIR/$dir"
     fi
 
-    ln -snf "$BASE/$dir" "$TG_DIR"
+    ln -snf "$(realpath "$BASE/$dir")" "$TG_DIR"
 done
 
 PACKAGES=(
@@ -123,10 +123,11 @@ $INSTALL_CMD "${PACKAGES[@]}"
 
 
 # ZSH
-if [[ -f "$HOME/.zshrc" || -L "$HOME/.zshrc" ]]; then
+if [[ -e "$HOME/.zshrc" || -L "$HOME/.zshrc" ]]; then
+    rm -rf "$BKUP_DIR/.zshrc"
     mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
 fi
-ln -snf "$BASE/.zshrc" "$HOME/.zshrc"
+ln -snf "$(realpath "$BASE/.zshrc")" "$HOME/.zshrc"
 
 # Wallpaper & Colors
 WP_DIR="$HOME/Wallpapers"
