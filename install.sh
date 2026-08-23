@@ -109,7 +109,6 @@ PACKAGES=(
 	"ttf-jetbrains-mono-nerd"
 	"brightnessctl"
 	"networkmanager"
-	"nmtui"
 )
 
 $INSTALL_CMD "${PACKAGES[@]}"
