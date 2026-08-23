@@ -126,7 +126,6 @@ $INSTALL_CMD "${PACKAGES[@]}"
 if [[ -f "$HOME/.zshrc" || -L "$HOME/.zshrc" ]]; then
     mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
 fi
-mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
 ln -snf "$BASE/.zshrc" "$HOME/.zshrc"
 
 # Wallpaper & Colors
@@ -138,5 +137,9 @@ matugen image "$WP_DIR/wall.jpg"
 
 
 # Rofi Theme Setup
-(cd $DOWNLOADS; git clone https://github.com/adi1090x/rofi.git || true; cd rofi; chmod +x setup.sh; ./setup.sh)
+(cd $DOWNLOADS; git clone --depth=1 https://github.com/adi1090x/rofi.git || true; cd rofi; chmod +x setup.sh; ./setup.sh)
 
+clear
+source "$HOME/.zshrc"
+
+echo "Welcome to Hind's Dotfiles!"
