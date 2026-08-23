@@ -58,16 +58,24 @@ LN_DIRS=(
 # sudo cp $dotfiles/pacman.conf /etc/pacman.conf
 
 # Custom scripts
-(cd $DOWNLOADS && git clone https://github.com/hind-sagar-biswas/linux-scripts.git || true)
-ln --symbolic "$SCRIPTS" "$HOME/.scripts" || true
+if [[ -d "$DOWNLOADS/linux-scripts" ]]; then
+    (cd "$DOWNLOADS/linux-scripts" && git pull --quiet)
+else
+    (cd "$DOWNLOADS" && git clone https://github.com/hind-sagar-biswas/linux-scripts.git)
+fi
+
+ln -snf "$SCRIPTS" "$HOME/.scripts"
 
 # Symlink Dotfiles
 for dir in "${LN_DIRS[@]}"; do
     TG_DIR="$CFG_DIR/$dir"
-    if [[ -d "$TG_DIR" ]]; then
-	mv "$TG_DIR" "$BKUP_DIR/$dir"
+
+    if [[ -e "$TG_DIR" || -L "$TG_DIR" ]]; then
+        rm -rf "$BKUP_DIR/$dir"
+        mv "$TG_DIR" "$BKUP_DIR/$dir"
     fi
-    ln --symbolic "$BASE/$dir" "$TG_DIR"
+
+    ln --snf "$BASE/$dir" "$TG_DIR"
 done
 
 PACKAGES=(
