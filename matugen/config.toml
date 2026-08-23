@@ -4,12 +4,12 @@ reload_apps = true
 [templates.waybar]
 input_path = "~/.config/matugen/templates/colors-waybar.css.tera"
 output_path = "~/.config/waybar/colors.css"
-post_hook = "pkill -SIGUSR2 waybar"
+post_hook = "pidof waybar >/dev/null && pkill -SIGUSR2 waybar || true"
 
 [templates.hyprland]
 input_path = "~/.config/matugen/templates/hyprland.lua.tera"
 output_path = "~/.config/hypr/modules/colors.lua"
-post_hook = "hyprctl reload"
+post_hook = "bash -c 'if [ -n \"$HYPRLAND_INSTANCE_SIGNATURE\" ]; then hyprctl reload; fi'"
 
 [templates.wlogout]
 input_path = "~/.config/matugen/templates/wlogout.css.tera"
@@ -18,7 +18,7 @@ output_path = "~/.config/wlogout/style.css"
 [templates.swaync_central]
 input_path = "~/.config/matugen/templates/central_control.css.tera"
 output_path = "~/.config/swaync/themes/nova-dark/central_control.css"
-post_hook = "swaync-client -rs"
+post_hook = "pidof swaync >/dev/null && swaync-client -rs || true"
 
 [templates.swaync_notifications]
 input_path = "~/.config/matugen/templates/notifications.css.tera"
