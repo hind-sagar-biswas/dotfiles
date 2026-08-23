@@ -154,7 +154,4 @@ matugen image "$WP_DIR/wall.jpg"
     fi
 )
 
-clear
-source "$HOME/.zshrc"
-
-echo "Welcome to Hind's Dotfiles!"
+source "$BASE/modules/wellcome.sh"
