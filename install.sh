@@ -136,8 +136,22 @@ cp "$BASE/wallpapers/"* "$WP_DIR/"
 matugen image "$WP_DIR/wall.jpg"
 
 
-# Rofi Theme Setup
-(cd $DOWNLOADS; git clone --depth=1 https://github.com/adi1090x/rofi.git || true; cd rofi; chmod +x setup.sh; ./setup.sh)
+# Rofi Themes
+(
+    cd "$DOWNLOADS" || exit 1
+
+    if [[ ! -d "rofi" ]]; then
+        git clone --depth=1 https://github.com/adi1090x/rofi.git
+    fi
+
+    if [[ -f "rofi/setup.sh" ]]; then
+        cd rofi
+        chmod +x setup.sh
+        ./setup.sh
+    else
+        echo "Error: setup.sh not found in $DOWNLOADS/rofi"
+    fi
+)
 
 clear
 source "$HOME/.zshrc"
