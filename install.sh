@@ -57,10 +57,6 @@ LN_DIRS=(
 # Pacman Conf
 # sudo cp $dotfiles/pacman.conf /etc/pacman.conf
 
-echo "Using $INSTALL_CMD as package manager"
-
-$INSTALL_CMD -Syu --noconfirm
-
 # Custom scripts
 (cd $DOWNLOADS && git clone https://github.com/hind-sagar-biswas/linux-scripts.git || true)
 ln --symbolic "$SCRIPTS" "$HOME/.scripts" || true
@@ -116,7 +112,7 @@ PACKAGES=(
 	"nmtui"
 )
 
-$INSTALL_CMD -S "${PACKAGES[@]}" --needed --noconfirm
+$INSTALL_CMD "${PACKAGES[@]}"
 
 
 # ZSH
