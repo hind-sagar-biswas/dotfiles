@@ -75,7 +75,7 @@ for dir in "${LN_DIRS[@]}"; do
         mv "$TG_DIR" "$BKUP_DIR/$dir"
     fi
 
-    ln --snf "$BASE/$dir" "$TG_DIR"
+    ln -snf "$BASE/$dir" "$TG_DIR"
 done
 
 PACKAGES=(
@@ -127,7 +127,7 @@ if [[ -f "$HOME/.zshrc" || -L "$HOME/.zshrc" ]]; then
     mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
 fi
 mv "$HOME/.zshrc" "$BKUP_DIR/.zshrc"
-ln --symbolic "$BASE/.zshrc" "$HOME/.zshrc"
+ln -snf "$BASE/.zshrc" "$HOME/.zshrc"
 
 # Wallpaper & Colors
 WP_DIR="$HOME/Wallpapers"
