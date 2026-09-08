@@ -52,6 +52,7 @@ LN_DIRS=(
     "wlogout"
     "wofi"
     "yt-dlp"
+    "quickshell"
 )
 
 # Pacman Conf
@@ -117,6 +118,7 @@ PACKAGES=(
 	"ttf-jetbrains-mono-nerd"
 	"brightnessctl"
 	"networkmanager"
+	"quickshell"
 )
 
 $INSTALL_CMD "${PACKAGES[@]}"
