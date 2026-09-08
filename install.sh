@@ -119,6 +119,7 @@ PACKAGES=(
 	"brightnessctl"
 	"networkmanager"
 	"quickshell"
+	"cava"
 )
 
 $INSTALL_CMD "${PACKAGES[@]}"
