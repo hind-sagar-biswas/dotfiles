@@ -24,6 +24,7 @@ hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(editorAlt))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("hyprshot -m output -m active"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot --freeze -m region"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("pkill -x quickshell || quickshell"))
 hl.bind(
 	mainMod .. " + V",
 	hl.dsp.exec_cmd(
